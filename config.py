@@ -3,6 +3,7 @@ FEATURES_DIR_PATH = "./features"
 WEIGHTS_DIR_PATH = "./weights"
 METADATA_DIR_PATH = "./metadata"
 RESULTS_DIR_PATH = "./results"
+PLAYLISTS_DIR_PATH = "./playlists"
 
 # File Paths
 DATA_PATH = "./MusAV"
@@ -14,6 +15,9 @@ FILE_PATHS_PATH = "./features/file_paths.pkl"
 
 # Result Paths
 GENRE_COUNTS_PATH = "./results/all_styles.tsv"
+
+# Playlist Paths
+DESCRIPTOR_PLAYLIST_PATH = "./playlists/descriptor_playlist.m3u8"
 
 # Model paths
 TEMPOCNN_MODEL_PATH = "./weights/deepsquare-k16-3.pb"
