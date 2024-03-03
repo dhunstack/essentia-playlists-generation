@@ -21,7 +21,7 @@ class EmbeddingPlaylist:
 
         self.create_page()
         self.results_handler()
-    
+
     @st.cache_data
     def _load_file_paths(_self):
         """
@@ -33,15 +33,15 @@ class EmbeddingPlaylist:
 
         file_paths = get_saved_file_paths()
         return file_paths
-    
+
     @st.cache_data
     def _cosine_similarity(_self, embedding_name):
         """
         Compute the cosine similarity between the embedding vectors.
-        
+
         Args:
             embedding_name (str): The name of the embedding to use.
-            
+
         Returns:
             np.array: The cosine similarity matrix.
         """
@@ -52,7 +52,7 @@ class EmbeddingPlaylist:
             embeddings_func = get_saved_msd_embeddings
         else:
             raise ValueError("Invalid embedding name.")
-        
+
         A = embeddings_func()
         Anorm = A / np.linalg.norm(A, axis=1)[:, np.newaxis]
         return np.dot(Anorm, Anorm.T)
@@ -69,7 +69,9 @@ class EmbeddingPlaylist:
         with st.sidebar:
             # Select track to generate playlists
             st.write("### Select a track to generate playlists")
-            self.track_select = st.selectbox("Select the track", self.all_tracks, index=None)
+            self.track_select = st.selectbox(
+                "Select the track", self.all_tracks, index=None
+            )
 
             # Display the selected track
             if self.track_select:
@@ -80,7 +82,7 @@ class EmbeddingPlaylist:
             st.write("### Select number of required tracks for the playlists")
             self.playlist_length = st.number_input(
                 "Number of tracks(0 for all)", min_value=0, max_value=100, value=10
-            )   
+            )
 
     def results_handler(self):
         """
@@ -137,9 +139,11 @@ class EmbeddingPlaylist:
             similarity_matrix = self.msd_embeddings_similarity
         else:
             raise ValueError("Invalid embedding name.")
-        
+
         track_index = self.all_tracks.index(self.track_select)
-        top_similar_indexes = np.argsort(similarity_matrix[track_index])[::-1][1: self.playlist_length+1]
+        top_similar_indexes = np.argsort(similarity_matrix[track_index])[::-1][
+            1 : self.playlist_length + 1
+        ]
 
         return [self.all_tracks[i] for i in top_similar_indexes]
 
@@ -165,7 +169,9 @@ class EmbeddingPlaylist:
         """
         # Add a button for saving the playlist
         st.write("#### 💾 Save Discogs Playlist")
-        self.discogs_playlist_name = st.text_input("Discogs Playlist name:", "discogs_embeddings_playlist")
+        self.discogs_playlist_name = st.text_input(
+            "Discogs Playlist name:", "discogs_embeddings_playlist"
+        )
         if st.button("Save Discogs Playlist"):
             playlist_path = os.path.join(
                 PLAYLISTS_DIR_PATH, f"{self.discogs_playlist_name}.m3u8"
@@ -173,7 +179,9 @@ class EmbeddingPlaylist:
 
             with open(playlist_path, "w") as f:
                 # Modify relative mp3 paths to make them accessible from the playlist folder.
-                mp3_paths = [os.path.join("..", mp3) for mp3 in self.top_discogs_similar_tracks]
+                mp3_paths = [
+                    os.path.join("..", mp3) for mp3 in self.top_discogs_similar_tracks
+                ]
 
                 f.write("\n".join(mp3_paths))
                 st.write(f"Stored discogs playlist to `{playlist_path}`.")
@@ -187,7 +195,9 @@ class EmbeddingPlaylist:
         """
         # Add a button for saving the playlist
         st.write("#### 💾 Save MSD Playlist")
-        self.msd_playlist_name = st.text_input("MSD Playlist name:", "msd_embeddings_playlist")
+        self.msd_playlist_name = st.text_input(
+            "MSD Playlist name:", "msd_embeddings_playlist"
+        )
         if st.button("Save MSD Playlist"):
             playlist_path = os.path.join(
                 PLAYLISTS_DIR_PATH, f"{self.msd_playlist_name}.m3u8"
@@ -195,7 +205,9 @@ class EmbeddingPlaylist:
 
             with open(playlist_path, "w") as f:
                 # Modify relative mp3 paths to make them accessible from the playlist folder.
-                mp3_paths = [os.path.join("..", mp3) for mp3 in self.top_msd_similar_tracks]
+                mp3_paths = [
+                    os.path.join("..", mp3) for mp3 in self.top_msd_similar_tracks
+                ]
 
                 f.write("\n".join(mp3_paths))
                 st.write(f"Stored msd playlist to `{playlist_path}`.")

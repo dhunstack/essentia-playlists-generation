@@ -16,6 +16,7 @@ from config import (
     PLAYLISTS_DIR_PATH,
 )
 
+
 def create_dir_if_not_exist(directory):
     """
     Create directory if it does not exist
@@ -29,11 +30,13 @@ def create_dir_if_not_exist(directory):
 
     return os.makedirs(directory) if not os.path.exists(directory) else None
 
+
 create_dir_if_not_exist(FEATURES_DIR_PATH)
 create_dir_if_not_exist(WEIGHTS_DIR_PATH)
 create_dir_if_not_exist(METADATA_DIR_PATH)
 create_dir_if_not_exist(RESULTS_DIR_PATH)
 create_dir_if_not_exist(PLAYLISTS_DIR_PATH)
+
 
 def load_json(json_path):
     """

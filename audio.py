@@ -79,6 +79,8 @@ def load_audio(audio_path):
         np array : Resampled audio at 11kHz
     """
     stereo, sr, nc = load_stereo_audio(audio_path)
+    if sr != 44100:
+        raise ValueError("Sample rate is not 44.1kHz")
     mono = get_mono_audio(stereo, nc)
     resampled_16k = get_resampled_16k_audio(mono)
     resampled_11k = get_resampled_11k_audio(mono)
