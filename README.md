@@ -10,11 +10,11 @@ Used MusAV dataset for playlist generation with audio features and embeddings.
 
 1. The following parameters need to be set in the `config.py` file -
 
-- `DATA_PATH` - Root Path of the folder with all audio files. Current configuration supports MP3 files with 44,100 Hz sampling rate.
+   - `DATA_PATH` - Root Path of the folder with all audio files. Current configuration supports MP3 files with 44,100 Hz sampling rate.
 
 2. MusAV dataset access can be requested [here](https://zenodo.org/records/7448344).
 
-3. Set up the virtual environment with requirements file. 
+3. Set up the virtual environment with requirements file.
 
 4. Install `essentia` and `essentia-tensorflow` using pip. Unless you're on Mac, then use the wheels [here](https://essentia.upf.edu/downloads/python-wheels/macosx/)
 
@@ -28,11 +28,15 @@ Run the audio descriptors playlist app using -
 streamlit run playlist_descriptor.py
 ```
 
+![Descriptor Playlist](./resources/images/playlist_descriptor.png)
+
 Run the track similarity playlist app using -
 
 ``` python
 streamlit run playlist_embeddings.py
 ```
+
+![Embeddings Playlist](./resources/images/playlist_embeddings.png)
 
 ## Documentation
 
