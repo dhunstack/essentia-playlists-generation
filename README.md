@@ -8,11 +8,15 @@ Used MusAV dataset for playlist generation with audio features and embeddings.
 
 #### Setup
 
-The following parameters need to be set in the `config.py` file -
+1. The following parameters need to be set in the `config.py` file -
 
 - `DATA_PATH` - Root Path of the folder with all audio files. Current configuration supports MP3 files with 44,100 Hz sampling rate.
 
-MusAV dataset access can be requested [here](https://zenodo.org/records/7448344).
+2. MusAV dataset access can be requested [here](https://zenodo.org/records/7448344).
+
+3. Set up the virtual environment with requirements file. 
+
+4. Install `essentia` and `essentia-tensorflow` using pip. Unless you're on Mac, then use the wheels [here](https://essentia.upf.edu/downloads/python-wheels/macosx/)
 
 ### Playlist Generators
 
